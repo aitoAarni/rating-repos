@@ -3,13 +3,13 @@ import { Text } from "react-native"
 const RepositoryItem = ({item}) => {
     return (
         <Text>
-            Full name: {item.fullName}
-            Description: {item.description}
-            Language: {item.language}
-            Stars: {item.stargazersCount}
-            Forks: {item.forksCount}
-            Reviews: {item.reviewCount}
-            Rating: {item.ratingAverage}
+            Full name: {item.fullName}{"\n"}
+            Description: {item.description}{"\n"}
+            Language: {item.language}{"\n"}
+            Stars: {item.stargazersCount}{"\n"}
+            Forks: {item.forksCount}{"\n"}
+            Reviews: {item.reviewCount}{"\n"}
+            Rating: {item.ratingAverage}{"\n"}
 
         </Text>
     )
