@@ -3,7 +3,7 @@ const theme = {
         textPrimary: '#24292e',
         textSecondary: '#586069',
         primary: '#0366d6',
-        appBar: '#3f3fa0',
+        appBar: '#1f1f1f',
         container: '#404040',
         separator: '#e1e4e8',
     },
