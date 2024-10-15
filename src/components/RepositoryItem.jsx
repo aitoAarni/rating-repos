@@ -4,34 +4,50 @@ import theme from '../theme'
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: theme.colors.container,
+        marginVertical: 10,
     },
     topContainer: {
         flexDirection: 'row',
-        justifyContent: 'space-evenly',
-        alignItems: 'center',
+        justifyContent: 'flex-start',
+        alignItems: 'flex-start',
     },
-    bottomContainer: {},
+    textContainer: {
+        marginTop: 10,
+        flex: 1,
+    },
+    bottomContainer: { marginTop: 15 },
     bottomContainerNums: {
         flexDirection: 'row',
-        justifyContent: 'space-around',
-        flexGrow: 1,
     },
     bottomContainerTitles: {
         flexDirection: 'row',
-        justifyContent: 'space-around',
-        flexGrow: 1,
     },
     bottomContainerChildren: {
         flexGrow: 1,
+        flexBasis: '25%',
+        alignItems: 'center',
+    },
+    topContainerText: {
+        marginVertical: 5,
     },
     avatar: {
-        width: 80,
-        height: 80,
+        width: 50,
+        height: 50,
+        marginHorizontal: 15,
+        marginTop: 0,
     },
-    header: {},
-    description: {},
-    language: {},
+    header: { marginBottom: 5 },
+    description: { marginBottom: 5, flexShrink: 1 },
+    language: {
+        backgroundColor: theme.colors.primary,
+        color: 'white',
+        alignSelf: 'flex-start',
+        paddingVertical: 4,
+        paddingHorizontal: 8,
+        borderRadius: 7,
+        marginTop: 4,
+        overflow: 'hidden',
+    },
 })
 
 const TopOfItem = ({ item }) => {
@@ -41,7 +57,7 @@ const TopOfItem = ({ item }) => {
                 style={styles.avatar}
                 source={{ uri: item.ownerAvatarUrl }}
             />
-            <View>
+            <View style={styles.textContainer}>
                 <Text
                     fontWeight={'bold'}
                     fontSize={'subheading'}
@@ -100,7 +116,7 @@ const BottomOfItem = ({ item }) => {
 
 const RepositoryItem = ({ item }) => {
     return (
-        <View>
+        <View style={styles.container}>
             <TopOfItem item={item} />
             <BottomOfItem item={item} />
         </View>
