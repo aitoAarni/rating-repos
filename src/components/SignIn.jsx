@@ -91,7 +91,7 @@ const SignInForm = ({ onSubmit }) => {
                 placeholder="Password"
                 value={formik.values.password}
                 onBlur={formik.handleBlur('password')}
-                onChange={formik.handleChange('password')}
+                onChangeText={formik.handleChange('password')}
             />
             {formik.touched.password && formik.errors.password && (
                 <Text style={{ color: 'red' }}>{formik.errors.password}</Text>
@@ -110,7 +110,6 @@ const SignIn = () => {
 }
 
 const onSubmit = values => {
-    console.log('234')
     console.log(values)
 }
 
