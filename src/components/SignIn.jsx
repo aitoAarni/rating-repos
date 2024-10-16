@@ -2,6 +2,7 @@ import { useFormik } from 'formik'
 import Text from './Text'
 import { Pressable, StyleSheet, TextInput, View } from 'react-native'
 import theme from '../theme'
+imoprt * as yup from 'yup'
 
 const styles = StyleSheet.create({
     input: {
