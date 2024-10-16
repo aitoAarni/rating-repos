@@ -6,6 +6,7 @@ const theme = {
         appBar: '#1f1f1f',
         container: '#404040',
         separator: '#e1e4e8',
+        lightGray: '#a0a0a0',
     },
     fontSizes: {
         body: 14,
