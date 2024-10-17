@@ -1,3 +1,5 @@
+import 'dotenv/config'
+
 export default {
     name: 'rate-repository-app',
     slug: 'rate-repository-app',
@@ -24,6 +26,7 @@ export default {
         favicon: './assets/favicon.png',
     },
     extra: {
-        env: 'development',
+        env: process.env.ENV,
+        apolloUri: process.env.APOLLO_URI
     },
 }
