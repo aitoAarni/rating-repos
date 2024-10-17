@@ -13,7 +13,7 @@
     "@apollo/client": "^3.11.8",
     "@expo/metro-config": "^0.17.4",
     "@expo/metro-runtime": "~3.1.1",
-    "expo": "^45.0.8",
+    "expo": "^51.0.38",
     "expo-status-bar": "~1.11.1",
     "formik": "^2.4.6",
     "graphql": "^15.8.0",

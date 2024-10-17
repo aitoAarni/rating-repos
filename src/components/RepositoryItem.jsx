@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
         marginTop: 0,
     },
     header: { marginBottom: 5 },
-    description: { marginBottom: 5, flexShrink: 1 },
+    description: { marginBottom: 5, flexShrink: 1, paddingRight: 5 },
     language: {
         backgroundColor: theme.colors.primary,
         color: 'white',
