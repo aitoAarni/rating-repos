@@ -13,27 +13,29 @@ const styles = StyleSheet.create({
 const ItemSeparator = () => <View style={styles.separator} />
 
 const RepositoryList = () => {
-    const [repositories, setRepositories] = useState();
-  
+    const [repositories, setRepositories] = useState()
+
     const fetchRepositories = async () => {
-      // Replace the IP address part with your own IP address!
-      const response = await fetch('http://192.168.1.33:5000/api/repositories');
-      const json = await response.json();
-  
-      console.log(json);
-  
-      setRepositories(json);
-    };
-  
+        // Replace the IP address part with your own IP address!
+        const response = await fetch(
+            'http://192.168.1.120:5000/api/repositories'
+        )
+        const json = await response.json()
+
+        //   console.log(json);
+
+        setRepositories(json)
+    }
+
     useEffect(() => {
-      fetchRepositories();
-    }, []);
-  
+        fetchRepositories()
+    }, [])
+
     // Get the nodes from the edges array
     const repositoryNodes = repositories
-      ? repositories.edges.map(edge => edge.node)
-      : [];
-  
+        ? repositories.edges.map(edge => edge.node)
+        : []
+    console.log(repositoryNodes)
 
     return (
         <FlatList

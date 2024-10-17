@@ -85,7 +85,7 @@ const BottomOfItem = ({ item }) => {
                 <View style={styles.bottomContainerChildren}>
                     <Text fontWeight={'bold'}>
                         {item.forksCount < 1000
-                            ? item.forksCountj.toString()
+                            ? item.forksCount.toString()
                             : (item.forksCount / 1000).toFixed(1) + 'k'}{' '}
                     </Text>
                 </View>
