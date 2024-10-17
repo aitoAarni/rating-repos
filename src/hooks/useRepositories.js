@@ -9,7 +9,7 @@ const useRepositories = () => {
 
         // Replace the IP address part with your own IP address!
         const response = await fetch(
-            'http://192.168.1.33:5000/api/repositories'
+            'http://192.168.1.120:5000/api/repositories'
         )
         const json = await response.json()
 
