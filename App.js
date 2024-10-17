@@ -7,7 +7,9 @@ import Constants from 'expo-constants'
 const apolloClient = createApolloClient()
 
 const App = () => {
-    console.log(Constants.expoConfig)
+    console.log('ayooooooooooooooooooooooooooooooooooooooooooofffffffffffffff')
+    console.log(Constants.expoConfig.extra)
+    console.log("anythiASDFJAJFDOHASODHFOUSAFOUSAHDFUAS")
     return (
         <NativeRouter>
             <ApolloProvider client={apolloClient}>
