@@ -1,8 +1,11 @@
-import { View, StyleSheet, ScrollView } from 'react-native'
+import { View, StyleSheet, ScrollView, Pressable } from 'react-native'
 import Constants from 'expo-constants'
 import Text from './Text'
 import theme from '../theme'
 import { Link } from 'react-router-native'
+import { useId } from 'react'
+import useAuthStorage from '../contexts/useAuthStorage'
+import { useApolloClient } from '@apollo/client'
 
 const styles = StyleSheet.create({
     container: {
@@ -18,7 +21,32 @@ const styles = StyleSheet.create({
     },
 })
 
+const SignOut = () => {
+    const authStorage = useAuthStorage()
+    const apolloClient = useApolloClient()
+    const signOut = () => {
+        authStorage.removeAccessToken()
+        apolloClient.resetStore()
+    }
+    return (
+        <Pressable onPress={signOut}>
+            <Text style={styles.header}>Sign out</Text>
+        </Pressable>
+    )
+}
+
+const SignIn = () => {
+    const { id } = useId()
+    console.log('the id is: ', id)
+    return (
+        <Link to="/signIn">
+            <Text style={styles.header}> Sign In </Text>
+        </Link>
+    )
+}
+
 const AppBar = () => {
+    const { id, loading } = useId()
     return (
         <View style={styles.container}>
             <ScrollView horizontal>
@@ -27,9 +55,7 @@ const AppBar = () => {
                         <Link to="/">
                             <Text style={styles.header}>Repositories</Text>
                         </Link>
-                        <Link to="/signIn">
-                            <Text style={styles.header}> Sign In </Text>
-                        </Link>
+                        {id ? <SignOut /> : <SignIn />}
                     </View>
                 }
             </ScrollView>
