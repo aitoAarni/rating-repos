@@ -44,7 +44,7 @@ const SignIn = () => {
 }
 
 const AppBar = () => {
-    const { id, loading } = useId()
+    const { id } = useId()
     return (
         <View style={styles.container}>
             <ScrollView horizontal>
@@ -54,7 +54,6 @@ const AppBar = () => {
                             <Text style={styles.header}>Repositories</Text>
                         </Link>
                         {id ? <SignOut /> : <SignIn />}
-                      
                     </View>
                 }
             </ScrollView>
