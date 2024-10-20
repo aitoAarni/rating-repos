@@ -1,9 +1,10 @@
-import { ApolloClient, useMutation } from '@apollo/client'
+import { ApolloClient, useApolloClient, useMutation } from '@apollo/client'
 import SIGN_IN from '../graphql/mutations'
 import useAuthStorage from '../contexts/useAuthStorage'
 
 const useSignIn = () => {
     const authStorage = useAuthStorage()
+    const apolloClient = useApolloClient()
     const [mutate, result] = useMutation(SIGN_IN)
 
     const signIn = async ({ username, password }) => {
@@ -11,7 +12,7 @@ const useSignIn = () => {
             variables: { credentials: { username, password } },
         })
         await authStorage.setAccessToken(data.authenticate.accessToken)
-        ApolloClient.resetClient()
+        apolloClient.resetStore()
         return data
     }
 
