@@ -112,10 +112,9 @@ const SignIn = () => {
     const navigate = useNavigate()
     const onSubmit = async values => {
         const { username, password } = values
-        console.log(values)
         try {
+            // eslint-disable-next-line no-unused-vars
             const result = await signIn({ username, password })
-            console.log(result.data)
             navigate('/')
         } catch (e) {
             console.log(e)

@@ -3,7 +3,7 @@ import Constants from 'expo-constants'
 import Text from './Text'
 import theme from '../theme'
 import { Link } from 'react-router-native'
-import { useId } from 'react'
+import useId from '../hooks/useId'
 import useAuthStorage from '../contexts/useAuthStorage'
 import { useApolloClient } from '@apollo/client'
 
@@ -36,8 +36,6 @@ const SignOut = () => {
 }
 
 const SignIn = () => {
-    const { id } = useId()
-    console.log('the id is: ', id)
     return (
         <Link to="/signIn">
             <Text style={styles.header}> Sign In </Text>
@@ -56,6 +54,7 @@ const AppBar = () => {
                             <Text style={styles.header}>Repositories</Text>
                         </Link>
                         {id ? <SignOut /> : <SignIn />}
+                      
                     </View>
                 }
             </ScrollView>
