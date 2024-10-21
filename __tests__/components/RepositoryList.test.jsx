@@ -69,7 +69,6 @@ describe('RepositoryList displays texts for repositories', () => {
 
     it("displays repo's startGazerCount", async () => {
         await waitFor(() => {
-            screen.debug()
             expect(screen.getByText('33.9k')).toBeDefined()
         })
     })

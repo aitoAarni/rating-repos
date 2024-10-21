@@ -49,7 +49,7 @@ const initialValues = {
     password: '',
 }
 
-const SignInForm = ({ onSubmit }) => {
+export const SignInForm = ({ onSubmit }) => {
     const formik = useFormik({
         initialValues,
         validationSchema,
@@ -100,7 +100,7 @@ const SignInForm = ({ onSubmit }) => {
             )}
             <Pressable style={styles.button} onPress={formik.handleSubmit}>
                 <Text style={styles.buttonText} fontWeight="bold">
-                    Sign in
+                    Sign in 
                 </Text>
             </Pressable>
         </View>
