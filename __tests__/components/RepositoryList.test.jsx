@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react-native'
+import { render, screen, waitFor } from '@testing-library/react-native'
 import RepositoryList from '../../src/components/RepositoryList'
 import { MockedProvider } from '@apollo/client/testing'
 import { GET_REPOSITORIES } from '../../src/graphql/queries'
@@ -35,16 +35,14 @@ const mocks = [
 ]
 
 describe('RepositoryList displays texts for repositories', () => {
-    beforeEach(() => {
+    it("displays repo's name", async () => {
         render(
             <MockedProvider mocks={mocks} addTypename={false}>
                 <RepositoryList />
             </MockedProvider>
         )
-    })
-
-    it("displays repo's name", () => {
-        screen.debug()
-        expect(screen.getByText('jaredpalmer/formik')).toBeDefined()
+        await waitFor(() =>
+            expect(screen.getByText('jaredpalmer/formik')).toBeDefined()
+        )
     })
 })
