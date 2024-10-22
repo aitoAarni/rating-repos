@@ -29,7 +29,6 @@ describe('SignIn', () => {
                     password: 'password',
                 })
 
-                // expect the onSubmit function to have been called once and with a correct first argument
             })
         })
     })
