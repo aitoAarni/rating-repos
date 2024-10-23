@@ -30,9 +30,9 @@ const styles = StyleSheet.create({
     },
 
     commentRating: { color: theme.colors.primary, fontSize: 25 },
-    commentName: {},
-    commentDate: {},
-    commentText: {fontSize: 15},
+    commentName: { fontSize: 17, marginBottom: 2 },
+    commentDate: { color: '#303030', marginBottom: 2, fontSize: 15 },
+    commentText: { fontSize: 15 },
 })
 
 const Separator = () => {
@@ -53,9 +53,13 @@ const SingleRepositoryItem = () => {
     return (
         <FlatList
             ListHeaderComponent={() => (
-                <RepositoryItem item={repository} githubButton />
+                <View>
+                    <RepositoryItem item={repository} githubButton />
+                    <Separator />
+                </View>
             )}
             data={comments}
+            keyExtractor={({ id }) => id}
             renderItem={({ item }) => <Comment comment={item} />}
             ItemSeparatorComponent={Separator}
         />
@@ -73,8 +77,12 @@ const Comment = ({ comment }) => {
                 </View>
             </View>
             <View style={styles.commentRightContainer}>
-                <Text fontWeight="bold">{comment.user.username}</Text>
-                <Text>{formatDate(comment.createdAt)}</Text>
+                <Text fontWeight="bold" style={styles.commentName}>
+                    {comment.user.username}
+                </Text>
+                <Text style={styles.commentDate}>
+                    {formatDate(comment.createdAt)}
+                </Text>
                 <Text style={styles.commentText}>{comment.text}</Text>
             </View>
         </View>
