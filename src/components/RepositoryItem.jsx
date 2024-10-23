@@ -131,7 +131,7 @@ const RepositoryItem = ({ item, githubButton }) => {
         <View style={styles.container}>
             <TopOfItem item={item} />
             <BottomOfItem item={item} />
-            {githubButton && <GithubButton url={item.url} />}
+            {/* {githubButton && <GithubButton url={item.url} />} */}
         </View>
     )
 }

@@ -5,7 +5,6 @@ const useId = () => {
     const { data, loading, refetch } = useQuery(GET_USER_ID, {
         fetchPolicy: 'cache-and-network',
     })
-    console.log(data)
     const id = data?.me ? data.me.id : null
     return { id, loading, refetch }
 }
