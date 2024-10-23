@@ -36,6 +36,26 @@ export const GET_REPOSITORY = gql`
     }
 `
 
+export const GET_COMMENTS = gql`
+    query Node($repositoryId: ID!) {
+        repository(id: $repositoryId) {
+            reviews {
+                edges {
+                    node {
+                        createdAt
+                        id
+                        rating
+                        text
+                        user {
+                            username
+                        }
+                    }
+                }
+            }
+        }
+    }
+`
+
 export const GET_USER_ID = gql`
     query Me {
         me {

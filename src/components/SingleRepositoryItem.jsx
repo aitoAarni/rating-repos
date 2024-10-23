@@ -2,14 +2,24 @@ import { useParams } from 'react-router-native'
 import useRepository from '../hooks/useRepository'
 import RepositoryItem from './RepositoryItem'
 import Text from './Text'
+import useComments from '../hooks/useComments'
 
 const SingleRepositoryItem = () => {
     const { id } = useParams()
-    console.log('da iidee: ', id)
-    const { repository, loading } = useRepository(id)
-    if (loading) return <Text>Loading</Text>
-    console.log(repository)
+    const { repository, loading: loadingRepository } = useRepository(id)
+    const { commentEdges, loading: loadingComments } = useComments(id)
+    if (loadingRepository) return <Text>loading...</Text>
+    console.log(commentEdges)
+    const comments = !loadingComments
+        ? commentEdges.map(edge => edge.node)
+        : null
+    console.log(comments)
+
     return <RepositoryItem item={repository} githubButton />
+}
+
+const Comment = ({ comment }) => {
+    
 }
 
 export default SingleRepositoryItem
