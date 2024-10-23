@@ -50,8 +50,10 @@ const styles = StyleSheet.create({
         overflow: 'hidden',
     },
     githubButton: {
-        
-    }
+        flexDirection: 'row',
+        justifyContent: 'center',
+        flexGrow: 1,
+    },
 })
 
 const TopOfItem = ({ item }) => {
@@ -123,9 +125,11 @@ const GithubButton = ({ url }) => {
         Linking.openURL(url)
     }
     return (
-        <Pressable onPress={onPress}>
-            <Text style={styles.language}>Open in GitHub</Text>
-        </Pressable>
+        <View style={styles.githubButton}>
+            <Pressable  onPress={onPress}>
+                <Text style={styles.language}>Open in GitHub</Text>
+            </Pressable>
+        </View>
     )
 }
 
