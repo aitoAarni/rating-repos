@@ -6,6 +6,7 @@ import * as Linking from 'expo-linking'
 const styles = StyleSheet.create({
     container: {
         marginVertical: 10,
+        paddingVertical: 4
     },
     topContainer: {
         flexDirection: 'row',
@@ -49,11 +50,16 @@ const styles = StyleSheet.create({
         marginTop: 4,
         overflow: 'hidden',
     },
-    githubButton: {
+    githubButtonCoontainer: {
         flexDirection: 'row',
         justifyContent: 'center',
         flexGrow: 1,
+        backgroundColor: theme.colors.primary,
+        marginHorizontal: 10,
+        marginTop: 10,
+        borderRadius: 7,
     },
+    githubButton: { color: 'white', paddingVertical: 10 },
 })
 
 const TopOfItem = ({ item }) => {
@@ -125,11 +131,13 @@ const GithubButton = ({ url }) => {
         Linking.openURL(url)
     }
     return (
-        <View style={styles.githubButton}>
-            <Pressable  onPress={onPress}>
-                <Text style={styles.language}>Open in GitHub</Text>
+            <Pressable onPress={onPress}>
+                <View style={styles.githubButtonCoontainer}>
+                    <Text fontWeight={'bold'} style={styles.githubButton}>
+                        Open in GitHub
+                    </Text>
+                </View>
             </Pressable>
-        </View>
     )
 }
 
