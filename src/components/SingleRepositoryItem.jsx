@@ -5,8 +5,8 @@ import Text from './Text'
 
 const SingleRepositoryItem = () => {
     const { id } = useParams()
+    console.log('da iidee: ', id)
     const { repository, loading } = useRepository(id)
-    console.log('loading:' + loading)
     if (loading) return <Text>Loading</Text>
     console.log(repository)
     return <RepositoryItem item={repository} githubButton />

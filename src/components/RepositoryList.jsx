@@ -30,8 +30,7 @@ const RepositoryList = () => {
                 return (
                     <Pressable
                         onPress={() => {
-                            console.log(item.id)
-                            navigate('/${item.id}')
+                            navigate(`/${item.id}`)
                         }}
                     >
                         <RepositoryItem item={item} githubButton />
