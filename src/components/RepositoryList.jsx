@@ -33,7 +33,7 @@ const RepositoryList = () => {
                             navigate(`/${item.id}`)
                         }}
                     >
-                        <RepositoryItem item={item} githubButton />
+                        <RepositoryItem item={item} />
                     </Pressable>
                 )
             }}

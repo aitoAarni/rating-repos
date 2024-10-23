@@ -6,7 +6,7 @@ import * as Linking from 'expo-linking'
 const styles = StyleSheet.create({
     container: {
         marginVertical: 10,
-        paddingVertical: 4
+        paddingVertical: 4,
     },
     topContainer: {
         flexDirection: 'row',
@@ -131,13 +131,13 @@ const GithubButton = ({ url }) => {
         Linking.openURL(url)
     }
     return (
-            <Pressable onPress={onPress}>
-                <View style={styles.githubButtonCoontainer}>
-                    <Text fontWeight={'bold'} style={styles.githubButton}>
-                        Open in GitHub
-                    </Text>
-                </View>
-            </Pressable>
+        <Pressable onPress={onPress}>
+            <View style={styles.githubButtonCoontainer}>
+                <Text fontWeight={'bold'} style={styles.githubButton}>
+                    Open in GitHub
+                </Text>
+            </View>
+        </Pressable>
     )
 }
 
