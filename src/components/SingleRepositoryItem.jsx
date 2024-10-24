@@ -43,11 +43,9 @@ const SingleRepositoryItem = () => {
     const { id } = useParams()
     const { repository, loading: loadingRepository } = useRepository(id)
     const { commentEdges, loading: loadingComments } = useComments(id)
-    console.log(commentEdges)
     const comments = !loadingComments
         ? commentEdges.map(edge => edge.node)
         : null
-    console.log(comments)
     if (loadingRepository || loadingComments) return <Text>loading...</Text>
 
     return (

@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     textInput: {
         borderWidth: 1,
         marginTop: 20,
-        fontSize: 30,
+        fontSize: 20,
         borderRadius: 6,
         padding: 20,
         overflow: 'hidden',
@@ -23,10 +23,19 @@ const styles = StyleSheet.create({
         paddingVertical: 20,
         borderRadius: 10,
     },
-    buttonText: { color: 'white', fontSize: 30 },
+    buttonText: { color: 'white', fontSize: 20 },
 })
 
-const validationSchema = yup.object().shape({})
+const validationSchema = yup.object().shape({
+    ownerName: yup.string().required("Owner's name is required"),
+    repositoryName: yup.string().required("Repostiory's owner is required"),
+    rating: yup
+        .number()
+        .min(1, 'The rating has to be 1 or greater')
+        .max(100, 'The rating has to be 100 or less')
+        .required(),
+    review: yup.string(),
+})
 
 const initialValues = {
     ownerName: '',
