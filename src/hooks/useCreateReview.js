@@ -11,7 +11,6 @@ const useCreateReview = () => {
             ownerName: reviewItem.ownerName,
             repositoryName: reviewItem.repositoryName,
         }
-        console.log(typeof review.rating)
         const { data } = await mutate({
             variables: {
                 review,
