@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     },
 })
 
-const SignOut = () => {
+const SignOutLink = () => {
     const authStorage = useAuthStorage()
     const apolloClient = useApolloClient()
     const signOut = () => {
@@ -35,10 +35,18 @@ const SignOut = () => {
     )
 }
 
-const SignIn = () => {
+const SignInLink = () => {
     return (
         <Link to="/signIn">
             <Text style={styles.header}> Sign In </Text>
+        </Link>
+    )
+}
+
+const CreateReviewLink = () => {
+    return (
+        <Link to="/createReview">
+            <Text style={styles.header}>Create a review</Text>
         </Link>
     )
 }
@@ -53,7 +61,8 @@ const AppBar = () => {
                         <Link to="/">
                             <Text style={styles.header}>Repositories</Text>
                         </Link>
-                        {id ? <SignOut /> : <SignIn />}
+                        {id && <CreateReviewLink />}
+                        {id ? <SignOutLink /> : <SignInLink />}
                     </View>
                 }
             </ScrollView>
