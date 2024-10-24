@@ -142,6 +142,8 @@ const GithubButton = ({ url }) => {
 }
 
 const RepositoryItem = ({ item, githubButton }) => {
+    console.log('itmmmm<zzzze: ', item)
+    if (!item) return <Text>Loading site...</Text>
     return (
         <View style={styles.container}>
             <TopOfItem item={item} />

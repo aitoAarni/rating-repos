@@ -100,7 +100,7 @@ export const SignInForm = ({ onSubmit }) => {
             )}
             <Pressable style={styles.button} onPress={formik.handleSubmit}>
                 <Text style={styles.buttonText} fontWeight="bold">
-                    Sign in 
+                    Sign in
                 </Text>
             </Pressable>
         </View>

@@ -3,6 +3,8 @@ import * as yup from 'yup'
 import { useFormik } from 'formik'
 import theme from '../theme'
 import Text from './Text'
+import useCreateReview from '../hooks/useCreateReview'
+import { useNavigate } from 'react-router-native'
 
 const styles = StyleSheet.create({
     container: { marginHorizontal: 20 },
@@ -112,6 +114,7 @@ const CreateReviewForm = ({ onSubmit }) => {
                 <Text style={{ color: 'red' }}>{formik.errors.rating}</Text>
             )}
             <TextInput
+                multiline
                 value={formik.values.review}
                 onBlur={formik.handleBlur('review')}
                 onChangeText={formik.handleChange('review')}
@@ -129,7 +132,7 @@ const CreateReviewForm = ({ onSubmit }) => {
             {formik.touched.review && formik.errors.review && (
                 <Text style={{ color: 'red' }}>{formik.errors.review}</Text>
             )}
-            <Pressable onPress={onSubmit}>
+            <Pressable onPress={formik.handleSubmit}>
                 <View style={styles.buttonContainer}>
                     <Text fontWeight="bold" style={styles.buttonText}>
                         Create a review
@@ -141,7 +144,13 @@ const CreateReviewForm = ({ onSubmit }) => {
 }
 
 const CreateReview = () => {
-    return <CreateReviewForm />
+    const [createReview] = useCreateReview()
+    const navigate = useNavigate()
+    const onSubmit = async reviewitem => {
+        const data = await createReview(reviewitem)
+        navigate(`/repository/${data.createReview.repositoryId}`)
+    }
+    return <CreateReviewForm onSubmit={onSubmit} />
 }
 
 export default CreateReview
