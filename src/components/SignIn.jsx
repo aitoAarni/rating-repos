@@ -26,8 +26,8 @@ const styles = StyleSheet.create({
         marginTop: 15,
         borderRadius: 6,
         overflow: 'hidden',
-        fontSize: 30,
-        padding: 10,
+        fontSize: 25,
+        padding: 20,
         borderColor: theme.colors.lightGray,
     },
     button: {
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderRadius: 6,
         marginTop: 15,
-        padding: 18,
+        padding: 20,
     },
     buttonText: {
         color: 'white',

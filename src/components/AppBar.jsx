@@ -51,6 +51,14 @@ const CreateReviewLink = () => {
     )
 }
 
+const SignUpLink = () => {
+    return (
+        <Link to="/signUp">
+            <Text style={styles.header}>Sign up</Text>
+        </Link>
+    )
+}
+
 const AppBar = () => {
     const { id } = useId()
     return (
@@ -63,6 +71,7 @@ const AppBar = () => {
                         </Link>
                         {id && <CreateReviewLink />}
                         {id ? <SignOutLink /> : <SignInLink />}
+                        {!id && <SignUpLink />}
                     </View>
                 }
             </ScrollView>
