@@ -129,12 +129,8 @@ const SignUp = () => {
     const [signIn] = useSignIn()
     const navigate = useNavigate()
     const onSubmit = async values => {
-        console.log(values)
-        const id = await createUser(values)
-        console.log('created user id; ', id)
-        const data = await signIn(values)
-        console.log('signed in data: ', data)
-
+        await createUser(values)
+        await signIn(values)
         navigate('/')
     }
     return <SignUpForm onSubmit={onSubmit} />

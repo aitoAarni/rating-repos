@@ -43,8 +43,6 @@ const SingleRepositoryItem = () => {
     const { id } = useParams()
     const { repository, loading: loadingRepository } = useRepository(id)
     const { commentEdges, loading: loadingComments } = useComments(id)
-    console.log('repository:', repository)
-    console.log('commentEddg:', commentEdges)
     if (loadingRepository || loadingComments) return <Text>loading...</Text>
     const comments =
         !loadingComments && commentEdges
