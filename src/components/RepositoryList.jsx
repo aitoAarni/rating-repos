@@ -5,12 +5,25 @@ import useRepositories from '../hooks/useRepositories'
 import { useNavigate } from 'react-router-native'
 import { useState } from 'react'
 import { Picker } from '@react-native-picker/picker'
+import { TextInput } from 'react-native'
+import { useDebounce } from 'use-debounce'
 
 const styles = StyleSheet.create({
     separator: {
         height: 10,
         backgroundColor: theme.colors.separator,
     },
+    search: {
+        // borderWidth: 1,
+        marginTop: 15,
+        borderRadius: 6,
+        overflow: 'hidden',
+        fontSize: 20,
+        paddingVertical: 5,
+        paddingHorizontal: 20,
+        marginHorizontal: 15,
+    },
+    picker: { marginHorizontal: 15 },
 })
 
 const orderMapping = {
@@ -28,8 +41,13 @@ const orderMapping = {
 const ItemSeparator = () => <View style={styles.separator} />
 
 const RepositoryList = () => {
-    const [orderedBy, setOrderedBy] = useState('latest')
-    const { repositories } = useRepositories(orderMapping[orderedBy])
+    const [orderedBy, setOrderedBy] = useState('highest')
+    const [searchText, setSearchText] = useState('')
+    const [searchDebounce] = useDebounce(searchText, 500)
+    const { repositories } = useRepositories(
+        orderMapping[orderedBy],
+        searchDebounce
+    )
     const navigate = useNavigate()
 
     const repositoryNodes = repositories?.edges
@@ -38,7 +56,17 @@ const RepositoryList = () => {
 
     return (
         <View style={{ flex: 1 }}>
+            <TextInput
+                caretHidden={true}
+                autoComplete="off"
+                autoCapitalize="none"
+                placeholder="search"
+                style={styles.search}
+                onChangeText={setSearchText}
+                value={searchText}
+            />
             <Picker
+                style={styles.picker}
                 selectedValue={orderedBy}
                 // eslint-disable-next-line no-unused-vars
                 onValueChange={(itemValue, _itemIndex) => {
