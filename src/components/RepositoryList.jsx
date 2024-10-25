@@ -29,7 +29,6 @@ const ItemSeparator = () => <View style={styles.separator} />
 
 const RepositoryList = () => {
     const [orderedBy, setOrderedBy] = useState('latest')
-    console.log(orderMapping[orderedBy])
     const { repositories } = useRepositories(orderMapping[orderedBy])
     const navigate = useNavigate()
 
