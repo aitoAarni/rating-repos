@@ -1,4 +1,4 @@
-import { FlatList, View, StyleSheet, Pressable, ViewBase } from 'react-native'
+import { FlatList, View, StyleSheet, Pressable } from 'react-native'
 import RepositoryItem from './RepositoryItem'
 import theme from '../theme'
 import useRepositories from '../hooks/useRepositories'
@@ -14,14 +14,14 @@ const styles = StyleSheet.create({
 })
 
 const orderMapping = {
-    latest: { orderDirection: 'ASC', orderedBy: 'CREATED_AT' },
+    latest: { orderDirection: 'ASC', orderBy: 'CREATED_AT' },
     highest: {
         orderDirection: 'DESC',
-        orderedBy: 'RATING_AVERAGE',
+        orderBy: 'RATING_AVERAGE',
     },
     lowest: {
         orderDirection: 'ASC',
-        orderedBy: 'RATING_AVERAGE',
+        orderBy: 'RATING_AVERAGE',
     },
 }
 
@@ -29,16 +29,16 @@ const ItemSeparator = () => <View style={styles.separator} />
 
 const RepositoryList = () => {
     const [orderedBy, setOrderedBy] = useState('latest')
+    console.log(orderMapping[orderedBy])
     const { repositories } = useRepositories(orderMapping[orderedBy])
     const navigate = useNavigate()
 
-    // Get the nodes from the edges array
     const repositoryNodes = repositories?.edges
         ? repositories.edges.map(edge => edge.node)
         : []
 
     return (
-        <View>
+        <View style={{ flex: 1 }}>
             <Picker
                 selectedValue={orderedBy}
                 // eslint-disable-next-line no-unused-vars
