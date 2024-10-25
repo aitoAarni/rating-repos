@@ -13,14 +13,23 @@ const styles = StyleSheet.create({
     },
 })
 
+const orderMapping = {
+    latest: { orderDirection: 'ASC', orderedBy: 'CREATED_AT' },
+    highest: {
+        orderDirection: 'DESC',
+        orderedBy: 'RATING_AVERAGE',
+    },
+    lowest: {
+        orderDirection: 'ASC',
+        orderedBy: 'RATING_AVERAGE',
+    },
+}
+
 const ItemSeparator = () => <View style={styles.separator} />
 
 const RepositoryList = () => {
-    const { repositories } = useRepositories()
-    const [orderedBy, setOrderedBy] = useState({
-        orderDirection: 'ASC',
-        orderedBy: 'CREATED_AT',
-    })
+    const [orderedBy, setOrderedBy] = useState('latest')
+    const { repositories } = useRepositories(orderMapping[orderedBy])
     const navigate = useNavigate()
 
     // Get the nodes from the edges array
@@ -34,28 +43,15 @@ const RepositoryList = () => {
                 selectedValue={orderedBy}
                 // eslint-disable-next-line no-unused-vars
                 onValueChange={(itemValue, _itemIndex) => {
-                    console.log()
                     setOrderedBy(itemValue)
                 }}
             >
-                <Picker.Item
-                    label="Latest repositories"
-                    value={{ orderDirection: 'ASC', orderedBy: 'CREATED_AT' }}
-                />
+                <Picker.Item label="Latest repositories" value="latest" />
                 <Picker.Item
                     label="Highes rated repositories"
-                    value={{
-                        orderDirection: 'DESC',
-                        orderedBy: 'RATING_AVERAGE',
-                    }}
+                    value="highest"
                 />
-                <Picker.Item
-                    label="Lowest rated repositories"
-                    value={{
-                        orderDirection: 'ASC',
-                        orderedBy: 'RATING_AVERAGE',
-                    }}
-                />
+                <Picker.Item label="Lowest rated repositories" value="lowest" />
             </Picker>
             <FlatList
                 data={repositoryNodes}
