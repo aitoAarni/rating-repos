@@ -5,34 +5,13 @@ import Text from './Text'
 import useComments from '../hooks/useComments'
 import { FlatList, StyleSheet, View } from 'react-native'
 import theme from '../theme'
-import formatDate from '../utils/formatDate'
+import ReviewItem from './ReviewItem'
 
 const styles = StyleSheet.create({
     separator: {
         height: 10,
         backgroundColor: theme.colors.separator,
     },
-    commentContainer: {
-        flexDirection: 'row',
-        margin: 15,
-    },
-    commentRightContainer: { flexShrink: 1 },
-    commentLeftContainer: { marginRight: 15 },
-
-    ratingCircle: {
-        height: 60,
-        width: 60,
-        borderRadius: 30,
-        borderWidth: 3,
-        borderColor: theme.colors.primary,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-
-    commentRating: { color: theme.colors.primary, fontSize: 25 },
-    commentName: { fontSize: 17, marginBottom: 2 },
-    commentDate: { color: '#303030', marginBottom: 2, fontSize: 15 },
-    commentText: { fontSize: 15 },
 })
 
 const Separator = () => {
@@ -59,32 +38,9 @@ const SingleRepositoryItem = () => {
             )}
             data={comments}
             keyExtractor={({ id }) => id}
-            renderItem={({ item }) => <Comment comment={item} />}
+            renderItem={({ item }) => <ReviewItem comment={item} />}
             ItemSeparatorComponent={Separator}
         />
-    )
-}
-
-const Comment = ({ comment }) => {
-    return (
-        <View style={styles.commentContainer}>
-            <View style={styles.commentLeftContainer}>
-                <View style={styles.ratingCircle}>
-                    <Text fontWeight={'bold'} style={styles.commentRating}>
-                        {comment.rating}
-                    </Text>
-                </View>
-            </View>
-            <View style={styles.commentRightContainer}>
-                <Text fontWeight="bold" style={styles.commentName}>
-                    {comment.user.username}
-                </Text>
-                <Text style={styles.commentDate}>
-                    {formatDate(comment.createdAt)}
-                </Text>
-                <Text style={styles.commentText}>{comment.text}</Text>
-            </View>
-        </View>
     )
 }
 
