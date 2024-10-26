@@ -65,9 +65,23 @@ export const GET_COMMENTS = gql`
 `
 
 export const GET_USER_ID = gql`
-    query Me {
-        me {
-            id
+query getCurrentUser($includeReviews: Boolean = false} (
+me {
+    id
+    reviews {
+      edges {
+        node {
+          createdAt
+          id
+          rating
+          text
+          repository {
+            fullName
+            ownerName
+          }
         }
+      }
     }
+  }
+}
 `
