@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     },
     header: {
         color: 'white',
-        fontSize: 15,
+        fontSize: 17,
         fontWeight: theme.fontWeights.bold,
         marginLeft: 10,
     },
@@ -59,8 +59,18 @@ const SignUpLink = () => {
     )
 }
 
+const MyReviews = () => {
+    return (
+        <Link to="/myReviews">
+            <Text style={styles.header}>My reviews</Text>
+        </Link>
+    )
+}
+
 const AppBar = () => {
-    const { id } = useId()
+    const { me } = useId()
+    if (!me?.id) return <Text>Loading</Text>
+    const id = me.id
     return (
         <View style={styles.container}>
             <ScrollView horizontal>
@@ -69,9 +79,9 @@ const AppBar = () => {
                         <Link to="/">
                             <Text style={styles.header}>Repositories</Text>
                         </Link>
-                        {id && <CreateReviewLink />}
-                        {id ? <SignOutLink /> : <SignInLink />}
-                        {!id && <SignUpLink />}
+                        {id ? <CreateReviewLink /> : <SignInLink />}
+                        {id && <MyReviews />}
+                        {id ? <SignOutLink /> : <SignUpLink />}
                     </View>
                 }
             </ScrollView>
