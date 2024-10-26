@@ -3,10 +3,10 @@ import RepositoryItem from './RepositoryItem'
 import theme from '../theme'
 import useRepositories from '../hooks/useRepositories'
 import { useNavigate } from 'react-router-native'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Picker } from '@react-native-picker/picker'
 import { TextInput } from 'react-native'
-import { useDebounce, useDebouncedCallback } from 'use-debounce'
+import { useDebounce } from 'use-debounce'
 
 const styles = StyleSheet.create({
     separator: {
@@ -14,17 +14,19 @@ const styles = StyleSheet.create({
         backgroundColor: theme.colors.separator,
     },
     search: {
-        // borderWidth: 1,
         marginTop: 15,
+        marginBottom: 2,
         borderRadius: 18,
         overflow: 'hidden',
         fontSize: 20,
         paddingVertical: 5,
         paddingHorizontal: 20,
         marginHorizontal: 15,
-        backgroundColor: '#f0f0f0'
+        backgroundColor: '#f0f0f0',
     },
-    picker: { marginHorizontal: 15, backgroundColor: '#f0f0f0',  },
+    picker: {
+        marginHorizontal: 15,
+    },
 })
 
 const orderMapping = {
