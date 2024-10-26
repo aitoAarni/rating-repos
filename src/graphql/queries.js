@@ -68,7 +68,7 @@ export const GET_USER_ID = gql`
     query getCurrentUser($includeReviews: Boolean = false) {
         me {
             id
-            reviews {
+            reviews @include(if: $includeReviews) {
                 edges {
                     node {
                         createdAt
