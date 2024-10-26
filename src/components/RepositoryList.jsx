@@ -3,10 +3,10 @@ import RepositoryItem from './RepositoryItem'
 import theme from '../theme'
 import useRepositories from '../hooks/useRepositories'
 import { useNavigate } from 'react-router-native'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Picker } from '@react-native-picker/picker'
 import { TextInput } from 'react-native'
-import { useDebounce } from 'use-debounce'
+import { useDebounce, useDebouncedCallback } from 'use-debounce'
 
 const styles = StyleSheet.create({
     separator: {
@@ -16,14 +16,15 @@ const styles = StyleSheet.create({
     search: {
         // borderWidth: 1,
         marginTop: 15,
-        borderRadius: 6,
+        borderRadius: 18,
         overflow: 'hidden',
         fontSize: 20,
         paddingVertical: 5,
         paddingHorizontal: 20,
         marginHorizontal: 15,
+        backgroundColor: '#f0f0f0'
     },
-    picker: { marginHorizontal: 15 },
+    picker: { marginHorizontal: 15, backgroundColor: '#f0f0f0',  },
 })
 
 const orderMapping = {
@@ -44,11 +45,12 @@ const RepositoryList = () => {
     const [orderedBy, setOrderedBy] = useState('highest')
     const [searchText, setSearchText] = useState('')
     const [searchDebounce] = useDebounce(searchText, 500)
+    const navigate = useNavigate()
+
     const { repositories } = useRepositories(
         orderMapping[orderedBy],
         searchDebounce
     )
-    const navigate = useNavigate()
 
     const repositoryNodes = repositories?.edges
         ? repositories.edges.map(edge => edge.node)
@@ -57,7 +59,6 @@ const RepositoryList = () => {
     return (
         <View style={{ flex: 1 }}>
             <TextInput
-                caretHidden={true}
                 autoComplete="off"
                 autoCapitalize="none"
                 placeholder="search"
