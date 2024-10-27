@@ -6,8 +6,8 @@ const useId = (includeReviews = false) => {
         fetchPolicy: 'cache-and-network',
         variables: { includeReviews },
     })
-    const id = data?.me ? data.me : null
-    return { id, loading, refetch }
+    const me = data?.me ? data.me : null
+    return { me, loading, refetch }
 }
 
 export default useId
