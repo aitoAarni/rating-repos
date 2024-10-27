@@ -78,6 +78,7 @@ export const GET_USER_ID = gql`
                         repository {
                             fullName
                             ownerName
+                            id
                         }
                     }
                 }

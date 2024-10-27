@@ -21,6 +21,7 @@ const UserReviewsList = () => {
             user: {
                 username: repository.fullName,
             },
+            repository: { id: repository.id },
         }
     })
 
@@ -28,7 +29,7 @@ const UserReviewsList = () => {
         <FlatList
             data={reviews}
             keyExtractor={({ id }) => id}
-            renderItem={({ item }) => <ReviewItem comment={item} />}
+            renderItem={({ item }) => <ReviewItem comment={item} buttons />}
             ItemSeparatorComponent={Separator}
         />
     )
