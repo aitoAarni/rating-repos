@@ -5,7 +5,7 @@ import ReviewItem from './ReviewItem'
 import theme from '../theme'
 
 const sytles = StyleSheet.create({
-    separator: { marginVertical: 10, backgroundColor: theme.colors.lightGray },
+    separator: { height: 10, backgroundColor: theme.colors.separator },
 })
 
 const Separator = () => <View style={sytles.separator}></View>
@@ -15,7 +15,7 @@ const UserReviewsList = () => {
     if (!me?.reviews) return <Text>loading</Text>
     const reviews = me.reviews.edges.map(item => {
         const { repository, ...reviewData } = item.node
-    
+
         return {
             ...reviewData,
             user: {
@@ -23,7 +23,6 @@ const UserReviewsList = () => {
             },
         }
     })
-
 
     return (
         <FlatList

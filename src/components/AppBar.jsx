@@ -68,9 +68,9 @@ const MyReviews = () => {
 }
 
 const AppBar = () => {
-    const { me } = useId()
-    if (!me?.id) return <Text>Loading</Text>
-    const id = me.id
+    const { me, loading } = useId()
+    if (loading) return <Text> Loading </Text>
+    const id = me?.id
     return (
         <View style={styles.container}>
             <ScrollView horizontal>
