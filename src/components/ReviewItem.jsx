@@ -10,6 +10,12 @@ const styles = StyleSheet.create({
     },
     commentRightContainer: { flexShrink: 1 },
     commentLeftContainer: { marginRight: 15 },
+    buttonsContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginTop: 15,
+        height: 50,
+    },
 
     ratingCircle: {
         height: 60,
@@ -25,8 +31,21 @@ const styles = StyleSheet.create({
     commentName: { fontSize: 17, marginBottom: 2 },
     commentDate: { color: '#303030', marginBottom: 2, fontSize: 15 },
     commentText: { fontSize: 15 },
-    viewRepositoryButton: {},
-    deleteReviewButton: {},
+    buttons: {
+        flex: 1,
+        borderRadius: 6,
+    },
+    buttonsText: { color: 'white', fontSize: 18 },
+    viewRepositoryButton: {
+        backgroundColor: 'mediumblue',
+        marginRight: 10,
+    },
+    textAlignment: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    deleteReviewButton: { backgroundColor: 'red', marginLeft: 10 },
 })
 
 const ReviewItem = ({ comment, buttons = false }) => {
@@ -60,17 +79,24 @@ const Buttons = ({ comment }) => {
     const viewRepository = () => {}
 
     return (
-        <View>
-            <Pressable onPress={viewRepository}>
-                <View style={styles.viewRepositoryButton}>
-                    <Text>View repository</Text>
-                </View>
-            </Pressable>
-            <Pressable onPress={deleteReview}>
-                <View style={styles.deleteReviewButton}>
-                    <Text>Delete review</Text>
-                </View>
-            </Pressable>
+        <View style={styles.buttonsContainer}>
+            <View style={[styles.buttons, styles.viewRepositoryButton]}>
+                <Pressable
+                    style={styles.textAlignment}
+                    onPress={viewRepository}
+                >
+                    <Text fontWeight="bold" style={styles.buttonsText}>
+                        View repository
+                    </Text>
+                </Pressable>
+            </View>
+            <View style={[styles.buttons, styles.deleteReviewButton]}>
+                <Pressable style={styles.textAlignment} onPress={deleteReview}>
+                    <Text fontWeight="bold" style={styles.buttonsText}>
+                        Delete review
+                    </Text>
+                </Pressable>
+            </View>
         </View>
     )
 }
