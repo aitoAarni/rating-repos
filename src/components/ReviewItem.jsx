@@ -1,7 +1,11 @@
-import { Pressable, StyleSheet, View } from 'react-native'
+import { Alert, Pressable, StyleSheet, View } from 'react-native'
 import Text from './Text'
 import formatDate from '../utils/formatDate'
 import theme from '../theme'
+import { useNavigate } from 'react-router-native'
+import useDeleteReview from '../hooks/useDeleteReview'
+import { useContext } from 'react'
+import ReviewsRefetchContext from '../contexts/ReviewsRefetchContext'
 
 const styles = StyleSheet.create({
     componentContainer: { margin: 15, alignItem: 'center' },
@@ -69,14 +73,38 @@ const ReviewItem = ({ comment, buttons = false }) => {
                     <Text style={styles.commentText}>{comment.text}</Text>
                 </View>
             </View>
-            {buttons && <Buttons comment={comment} />}
+            {buttons && (
+                <Buttons
+                    reviewId={comment.id}
+                    repositoryId={comment.repository.id}
+                />
+            )}
         </View>
     )
 }
 
-const Buttons = ({ comment }) => {
-    const deleteReview = () => {}
-    const viewRepository = () => {}
+const Buttons = ({ reviewId, repositoryId }) => {
+    const refetch = useContext(ReviewsRefetchContext)
+    const navigate = useNavigate()
+    const deleteReviewMutation = useDeleteReview()
+    const deleteReview = async () => {
+        await deleteReviewMutation(reviewId)
+        refetch()
+    }
+    const viewRepository = () => {
+        navigate(`/repository/${repositoryId}`)
+    }
+
+    const deleteReviewAlert = () => {
+        Alert.alert(
+            'Delete review',
+            'Are you sure you want to delete the review?',
+            [
+                { text: 'cancle', style: 'cancel' },
+                { text: 'delete', onPress: deleteReview },
+            ]
+        )
+    }
 
     return (
         <View style={styles.buttonsContainer}>
@@ -91,7 +119,10 @@ const Buttons = ({ comment }) => {
                 </Pressable>
             </View>
             <View style={[styles.buttons, styles.deleteReviewButton]}>
-                <Pressable style={styles.textAlignment} onPress={deleteReview}>
+                <Pressable
+                    style={styles.textAlignment}
+                    onPress={deleteReviewAlert}
+                >
                     <Text fontWeight="bold" style={styles.buttonsText}>
                         Delete review
                     </Text>

@@ -24,4 +24,10 @@ const CREATE_USER = gql`
     }
 `
 
-export { SIGN_IN, CREATE_REVIEW, CREATE_USER }
+const DELETE_REVIEW = gql`
+    mutation DeleteReview($deleteReviewId: ID!) {
+        deleteReview(id: $deleteReviewId)
+    }
+`
+
+export { SIGN_IN, CREATE_REVIEW, CREATE_USER, DELETE_REVIEW }
