@@ -6,13 +6,8 @@ const useComments = (repositoryId, first) => {
         fetchPolicy: 'cache-and-network',
         variables: { repositoryId, first },
     })
-
     const handleFetcMore = () => {
         if (loading || !data?.repository.reviews.pageInfo.hasNextPage) return
-
-        console.log(
-            JSON.stringify(data.repository.reviews.pageInfo.hasNextPage)
-        )
 
         fetchMore({
             variables: {

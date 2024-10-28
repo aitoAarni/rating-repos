@@ -32,9 +32,7 @@ const SingleRepositoryItem = () => {
             ? commentEdges.map(edge => edge.node)
             : null
 
-    console.log(comments.length)
     const onEndReached = () => {
-        console.log('ayoo')
         fetchMore()
     }
     return (
