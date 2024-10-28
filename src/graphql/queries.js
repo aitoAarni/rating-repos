@@ -53,9 +53,14 @@ export const GET_REPOSITORY = gql`
 `
 
 export const GET_COMMENTS = gql`
-    query Node($repositoryId: ID!) {
+    query Repository($repositoryId: ID!, $first: Int, $after: String) {
         repository(id: $repositoryId) {
-            reviews {
+            reviews(first: $first, after: $after) {
+                pageInfo {
+                    endCursor
+                    hasNextPage
+                    startCursor
+                }
                 edges {
                     node {
                         createdAt

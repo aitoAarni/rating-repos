@@ -49,13 +49,13 @@ const RepositoryList = () => {
     const [searchDebounce] = useDebounce(searchText, 500)
     const navigate = useNavigate()
 
-    const stillSeaching = searchText !== searchDebounce
+    const stillSearching = searchText !== searchDebounce
 
     const { repositories, fetchMore } = useRepositories(
         orderMapping[orderedBy],
         searchDebounce,
         6,
-        stillSeaching
+        stillSearching
     )
 
     const repositoryNodes = repositories?.edges

@@ -21,15 +21,26 @@ const Separator = () => {
 const SingleRepositoryItem = () => {
     const { id } = useParams()
     const { repository, loading: loadingRepository } = useRepository(id)
-    const { commentEdges, loading: loadingComments } = useComments(id)
+    const {
+        commentEdges,
+        loading: loadingComments,
+        fetchMore,
+    } = useComments(id, 5)
     if (loadingRepository || loadingComments) return <Text>loading...</Text>
     const comments =
         !loadingComments && commentEdges
             ? commentEdges.map(edge => edge.node)
             : null
 
+    console.log(comments.length)
+    const onEndReached = () => {
+        console.log('ayoo')
+        fetchMore()
+    }
     return (
         <FlatList
+            onEndReached={onEndReached}
+            onEndReachedThreshold={0.5}
             ListHeaderComponent={() => (
                 <View>
                     <RepositoryItem item={repository} githubButton />

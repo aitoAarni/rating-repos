@@ -4,7 +4,7 @@ import { GET_REPOSITORIES } from '../graphql/queries'
 const useRepositories = (order, search, first, onlyCache = false) => {
     const { data, loading, fetchMore, ...result } = useQuery(GET_REPOSITORIES, {
         fetchPolicy: onlyCache ? 'cache-only' : 'cache-and-network',
-        variables: { searchKeyword: search, order, first },
+        variables: { searchKeyword: search, ...order, first },
     })
 
     const handleFetchMore = () => {
@@ -15,8 +15,8 @@ const useRepositories = (order, search, first, onlyCache = false) => {
         fetchMore({
             variables: {
                 after: data.repositories.pageInfo.endCursor,
-                order,
-                search,
+                ...order,
+                searchKeyword: search,
                 first,
             },
         })
