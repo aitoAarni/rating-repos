@@ -1,17 +1,25 @@
 import { gql } from '@apollo/client'
 
 export const GET_REPOSITORIES = gql`
-    query Repositories(
+    query PageInfo(
+        $first: Int
+        $after: String
         $orderDirection: OrderDirection
         $orderBy: AllRepositoriesOrderBy
-        $searchKeyword: String
     ) {
         repositories(
+            first: $first
+            after: $after
             orderDirection: $orderDirection
             orderBy: $orderBy
-            searchKeyword: $searchKeyword
         ) {
+            pageInfo {
+                endCursor
+                hasNextPage
+                startCursor
+            }
             edges {
+                cursor
                 node {
                     description
                     forksCount

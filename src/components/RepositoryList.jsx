@@ -49,15 +49,24 @@ const RepositoryList = () => {
     const [searchDebounce] = useDebounce(searchText, 500)
     const navigate = useNavigate()
 
-    const { repositories } = useRepositories(
+    const stillSeaching = searchText !== searchDebounce
+
+    const { repositories, fetchMore } = useRepositories(
         orderMapping[orderedBy],
-        searchDebounce
+        searchDebounce,
+        6,
+        stillSeaching
     )
 
     const repositoryNodes = repositories?.edges
         ? repositories.edges.map(edge => edge.node)
         : []
 
+    console.log(repositoryNodes.length)
+
+    const onEndReach = () => {
+        fetchMore()
+    }
     return (
         <View style={{ flex: 1 }}>
             <TextInput
@@ -84,6 +93,8 @@ const RepositoryList = () => {
                 <Picker.Item label="Lowest rated repositories" value="lowest" />
             </Picker>
             <FlatList
+                onEndReached={onEndReach}
+                onEndReachedThreshold={0.5}
                 data={repositoryNodes}
                 ItemSeparatorComponent={ItemSeparator}
                 renderItem={({ item }) => {
